@@ -1,0 +1,10 @@
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+# optional — transformer / image experiments (not executed in this build)
+# torch>=2.2
+# transformers>=4.40
+# timm>=0.9

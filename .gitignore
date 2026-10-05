@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env
+data/raw/*.zip
+data/raw/crisismmd_datasplit_all/
+data/raw/__MACOSX/
+data/interim/
+__pycache__/
+*.pyc

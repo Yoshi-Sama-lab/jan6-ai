@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    environment: { POSTGRES_USER: postgres, POSTGRES_PASSWORD: postgres, POSTGRES_DB: app_db }
+    ports: ["5432:5432"]
+  dintel:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/app_db
+      LOG_RAW_TEXT: "false"
+      CORS_ORIGIN: "*"
+      # DINTEL_API_KEY: set-me
+    depends_on: [db]
+  dintel-python-layer-a:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes: [".:/app"]
+    command: sh -c "pip install -q -r requirements.txt && uvicorn backend.app.main:app --host 0.0.0.0 --port 8081"
+    ports: ["8081:8081"]
